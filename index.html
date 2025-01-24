@@ -322,6 +322,25 @@
         }
 
         @media (max-width: 768px) {
+            .header {
+                height: 100svh;
+                padding-top: 0;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .container {
+                padding: 0;
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            .hero-content {
+                padding: 1rem;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
             .container {
                 padding: 0 1.5rem;
             }
@@ -340,8 +359,9 @@
             }
 
             .hero-content p {
-                font-size: 1.2rem;
-                margin-bottom: 2rem;
+                font-size: 1.1rem;
+                margin-bottom: 0;
+                text-align: center;
             }
 
             .token-symbol {
@@ -352,15 +372,19 @@
             .contract-address {
                 padding: 1rem;
                 min-width: unset;
-                width: 100%;
-                font-size: 0.9rem;
+                width: 90%;
+                font-size: 0.85rem;
+                margin: 0.5rem auto;
+                background: rgba(0,0,0,0.6);
             }
 
             .button {
                 padding: 1rem 2rem;
-                width: 100%;
-                margin: 0.5rem 0;
+                width: 90%;
+                margin: 0.5rem auto;
                 font-size: 1rem;
+                background: #00ccbb;
+                border-radius: 12px;
             }
 
             .section {
@@ -428,6 +452,7 @@
             }
         }
     </style>
+
 </head>
 <body>
     
