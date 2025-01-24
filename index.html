@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$MDGA Token - Make Disney Great Again</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #004c6d;
+            --secondary: #00ccbb;
+            --text: #ffffff;
+            --gradient: linear-gradient(135deg, rgba(0,76,109,0.95) 0%, rgba(0,204,187,0.95) 100%);
+            --card-bg: rgba(255,255,255,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,76,109,0.98);
+            padding: 1.25rem 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+        }
+
+        .nav-logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--secondary);
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 3rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            opacity: 0.85;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+            opacity: 1;
+        }
+
+        .header {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,76,109,0.3);
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            padding: 5rem;
+            text-align: center;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 5.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--text);
+            font-weight: 800;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 1.8rem;
+            margin-bottom: 3.5rem;
+            opacity: 0.95;
+            font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            line-height: 1.4;
+        }
+
+        .token-symbol {
+            font-size: 6rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin: 3.5rem 0;
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .contract-address {
+            background: rgba(0,0,0,0.4);
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            font-family: 'SF Mono', 'Monaco', monospace;
+            margin: 3.5rem 0;
+            word-break: break-all;
+            display: inline-block;
+            min-width: 400px;
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .copy-button {
+            background: var(--secondary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            margin-left: 1rem;
+            cursor: pointer;
+            color: var(--primary);
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .copy-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,204,187,0.3);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1.25rem 3.5rem;
+            background: var(--secondary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 1rem;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,204,187,0.3);
+        }
+
+        .section {
+            padding: 10rem 0;
+            position: relative;
+            background: var(--gradient);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 5rem;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .tokenomics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .tokenomics-item {
+            background: var(--card-bg);
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .tokenomics-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 32px rgba(0,204,187,0.2);
+            border-color: var(--secondary);
+        }
+
+        .tokenomics-item i {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+
+        .tokenomics-item h3 {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .tokenomics-item p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .roadmap-item {
+            background: var(--card-bg);
+            padding: 4rem;
+            border-radius: 24px;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s;
+        }
+
+        .roadmap-item:hover {
+            transform: translateX(10px);
+            border-color: var(--secondary);
+            box-shadow: 0 8px 32px rgba(0,204,187,0.2);
+        }
+
+        .roadmap-item i {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+        }
+
+        .roadmap-item h3 {
+            color: var(--text);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 2.25rem;
+            font-weight: 600;
+        }
+
+        .roadmap-item p {
+            line-height: 2;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: var(--primary);
+            padding: 8rem 0 6rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-links {
+            margin-top: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            
+
+            .hero-content h1 {
+                margin-top: 5rem;
+                font-size: 2rem;
+            }
+
+            .token-symbol {
+                font-size: 3rem;
+            }
+
+            .button {
+                width: 100%;
+                margin: 0.75rem 0;
+            }
+
+            .section h2 {
+                font-size: 3rem;
+            }
+
+            .tokenomics-item, .roadmap-item {
+                padding: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+
+    <header class="header">
+        <video class="video-background" autoplay loop muted playsinline preload="auto">
+            <source src="video.mp4" type="video/mp4">
+        </video>
+        <div class="header-overlay"></div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1>Make Disney Great Again</h1>
+                <p>Join the revolution to bring back the golden age of Disney storytelling. Our community-driven token empowers fans to make their voices heard.</p>
+                <div class="token-symbol">$MDGA</div>
+                <div class="contract-address">
+                    0x1234567890abcdef1234567890abcdef12345678
+                    <button class="copy-button" onclick="navigator.clipboard.writeText('0x1234567890abcdef1234567890abcdef12345678')">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <a href="#" class="button"><i class="fas fa-rocket"></i> Join the Movement</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="section" id="about">
+        <div class="container" data-aos="fade-up">
+            <h2>Our Mission</h2>
+            <div class="mission-content">
+                <p class="mission-text">$MDGA represents more than just a token – it's a statement from Disney fans worldwide. We believe in the power of community to influence positive change. Through our collective voice, we aim to restore the essence of Disney's storytelling that has touched generations.</p>
+                
+                <p class="mission-text">For decades, Disney created magic that transcended generations, weaving stories that spoke to both children and adults alike. Our mission is to reunite the global Disney community around our shared values: imagination, wonder, and the belief that stories can change the world.</p>
+                
+                <p class="mission-text">As stakeholders in the $MDGA movement, we're not just investors – we're guardians of a legacy. We envision a return to the storytelling depth that made Disney a cultural cornerstone, where artistic integrity meets commercial success, and where every story serves a purpose beyond entertainment.</p>
+                
+                <p class="mission-text">Through blockchain technology and community governance, we're creating a platform where fans can directly influence the future of storytelling. Our token holders become part of a revolutionary movement that combines traditional values with modern technology, ensuring that the magic of Disney storytelling continues to inspire future generations.</p>
+                
+                <p class="mission-text">Together, we're not just dreaming of a better tomorrow – we're building it. Join us in our mission to make Disney great again, one story at a time.</p>
+            </div>
+        </div>
+        <style>
+            .mission-content {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 2rem;
+                background: rgba(255,255,255,0.05);
+                border-radius: 24px;
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .mission-text {
+                font-size: 1.2rem;
+                line-height: 1.8;
+                margin-bottom: 2rem;
+                color: var(--text);
+                opacity: 0.9;
+            }
+            
+            .mission-text:last-child {
+                margin-bottom: 0;
+            }
+            
+            @media (max-width: 768px) {
+                .mission-content {
+                    padding: 1.5rem;
+                }
+                
+                .mission-text {
+                    font-size: 1.1rem;
+                }
+            }
+        </style>
+    </section>
+
+    <section class="section" id="tokenomics">
+        <div class="container">
+            <h2>Tokenomics</h2>
+            <div class="tokenomics">
+                <div class="tokenomics-item" data-aos="fade-up">
+                    <i class="fas fa-chart-pie"></i>
+                    <h3>Total Supply</h3>
+                    <p>1,000,000,000 $MDGA</p>
+                    <p>Limited supply ensures token value preservation</p>
+                </div>
+                <div class="tokenomics-item" data-aos="fade-up">
+                    <i class="fas fa-users"></i>
+                    <h3>Community</h3>
+                    <p>70% allocated for community</p>
+                    <p>Fair distribution to ensure genuine decentralization</p>
+                </div>
+                <div class="tokenomics-item" data-aos="fade-up">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Marketing</h3>
+                    <p>20% for strategic campaigns</p>
+                    <p>Focused on building sustainable growth and awareness</p>
+                </div>
+                <div class="tokenomics-item" data-aos="fade-up">
+                    <i class="fas fa-code"></i>
+                    <h3>Development</h3>
+                    <p>10% for future development</p>
+                    <p>Supporting long-term project sustainability</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="roadmap">
+        <div class="container">
+            <h2>Roadmap</h2>
+            <div class="roadmap">
+                <div class="roadmap-item" data-aos="fade-right">
+                    <h3><i class="fas fa-rocket"></i> Phase 1: Launch & Community Building</h3>
+                    <p>- Token launch on major DEXs<br>
+                    - Community building initiatives<br>
+                    - Social media presence establishment<br>
+                    - Initial marketing campaigns</p>
+                </div>
+                <div class="roadmap-item" data-aos="fade-left">
+                    <h3><i class="fas fa-chart-line"></i> Phase 2: Expansion & Partnerships</h3>
+                    <p>- CEX listings<br>
+                    - Strategic partnerships<br>
+                    - Community governance implementation<br>
+                    - Enhanced marketing campaigns</p>
+                </div>
+                <div class="roadmap-item" data-aos="fade-right">
+                    <h3><i class="fas fa-flag-checkered"></i> Phase 3: Movement Impact</h3>
+                    <p>- Large-scale community initiatives<br>
+                    - Major platform integrations<br>
+                    - Global awareness campaigns<br>
+                    - Real-world impact events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h2>Join the Magic</h2>
+            <div class="social-links">
+                <a href="#" class="button"><i class="fab fa-twitter"></i> Twitter</a>
+                <a href="#" class="button"><i class="fab fa-telegram"></i> Telegram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-background');
+            video.play().catch(function(error) {
+                console.log("Video autoplay failed:", error);
+            });
+            video.load();
+        });
+    </script>
+</body>
+</html>
